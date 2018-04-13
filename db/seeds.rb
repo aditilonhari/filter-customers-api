@@ -5,3 +5,35 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Customer.delete_all
+customers = Customer.create(
+  [
+    {
+      firstname: "Aditi",
+      lastname: "Lonhari"
+    },
+    {
+      firstname: "Neerad",
+      lastname: "Phansalkar"
+    },
+    {
+      firstname: "Sagar",
+      lastname: "Lonhari"
+    },
+    {
+      firstname: "Ananya",
+      lastname: "Pani"
+    },
+    {
+      firstname: "Akanksha",
+      lastname: "Lonhari"
+    },
+    {
+      firstname: "Akshay",
+      lastname: "Phatak"
+    },
+    {
+      firstname: "Sanmay",
+      lastname: "Patil"
+    },
+  ])
