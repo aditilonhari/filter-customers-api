@@ -1,16 +1,16 @@
 module Api::V1
 	class CustomersController < ActionController::API
 		def index
-		  if query_params[:by_full_name]
-		  	@customers = Customer.where("(firstname || lastname) LIKE ?",  "%#{query_params[:by_full_name]}%")
-		  else
-	      	@customers = Customer.all
-	      end
+			@customers = Customer.all
 
-		  if query_params[:by_company]
-		  	id = Company.find_by_name(query_params[:by_company]).id
-		  	@customers = @customers.where(company_id: id)
-		  end
+			if !query_params.empty? && query_params[:by_full_name]
+	        	@customers = Customer.where("(firstname || lastname) LIKE ?",  "%#{query_params[:by_full_name]}%")
+		    end
+
+		    if !query_params.empty? && query_params[:by_company] != '*'
+		  	   id = Company.find_by_name(query_params[:by_company]).id
+		  	   @customers = @customers.where(company_id: id)
+		    end
 
 	      render json: @customers
 	    end
