@@ -8,8 +8,7 @@ module Api::V1
 		    end
 
 		    if !query_params.empty? && query_params[:by_company] != '*'
-		  	   id = Company.find_by_name(query_params[:by_company]).id
-		  	   @customers = @customers.where(company_id: id)
+		  	   @customers = @customers.where(company_name: query_params[:by_company])
 		    end
 
 	      render json: @customers
