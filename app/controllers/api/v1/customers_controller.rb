@@ -2,12 +2,13 @@ module Api::V1
 	class CustomersController < ActionController::API
 		def index
 			@customers = Customer.all
+			@companies = Customer.pluck("DISTINCT company_name")
 
 			if !query_params.empty? && query_params[:by_full_name]
 	        	@customers = Customer.where("(firstname || lastname) LIKE ?",  "%#{query_params[:by_full_name]}%")
 		    end
 
-		    if !query_params.empty? && query_params[:by_company] != 'All'
+		    if !query_params.empty? && @companies.include?(query_params[:by_company])
 		  	   @customers = @customers.where(company_name: query_params[:by_company])
 		    end
 
