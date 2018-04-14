@@ -7,7 +7,7 @@ module Api::V1
 	        	@customers = Customer.where("(firstname || lastname) LIKE ?",  "%#{query_params[:by_full_name]}%")
 		    end
 
-		    if !query_params.empty? && query_params[:by_company] != '*'
+		    if !query_params.empty? && query_params[:by_company] != 'All'
 		  	   @customers = @customers.where(company_name: query_params[:by_company])
 		    end
 
